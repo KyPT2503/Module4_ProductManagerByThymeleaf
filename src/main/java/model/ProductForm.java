@@ -1,49 +1,51 @@
 package model;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class Product {
+public class ProductForm {
     private int id;
     private int quantity;
     private double price;
     private String name;
     private String category;
-    private String image;
+    private MultipartFile file;
     private List<String> colors;
     private boolean isNew;
     private int weight;
     private int size;
 
-    public Product() {
+    public ProductForm() {
+        this.colors = new ArrayList<>();
     }
 
-    public Product(int id, int quantity, double price, String name, String category) {
-        this.id = id;
+    public ProductForm(int quantity, double price, String name, String category, MultipartFile file, boolean isNew) {
         this.quantity = quantity;
         this.price = price;
         this.name = name;
         this.category = category;
-    }
-
-    public Product(int id, int quantity, double price, String name, String category, String image, boolean isNew) {
-        this.id = id;
-        this.quantity = quantity;
-        this.price = price;
-        this.name = name;
-        this.category = category;
-        this.image = image;
+        this.file = file;
         this.isNew = isNew;
     }
 
-    public Product(int id, int quantity, double price, String name, String category, String image, List<String> colors, boolean isNew, int weight, int size) {
+    public ProductForm(int id, int quantity, double price, String name, String category, MultipartFile file) {
         this.id = id;
         this.quantity = quantity;
         this.price = price;
         this.name = name;
         this.category = category;
-        this.image = image;
+        this.file = file;
+    }
+
+    public ProductForm(int quantity, double price, String name, String category, MultipartFile file, List<String> colors, int weight, int size) {
+        this.quantity = quantity;
+        this.price = price;
+        this.name = name;
+        this.category = category;
+        this.file = file;
         this.colors = colors;
-        this.isNew = isNew;
         this.weight = weight;
         this.size = size;
     }
@@ -88,12 +90,12 @@ public class Product {
         this.category = category;
     }
 
-    public String getImage() {
-        return image;
+    public MultipartFile getFile() {
+        return file;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 
     public List<String> getColors() {

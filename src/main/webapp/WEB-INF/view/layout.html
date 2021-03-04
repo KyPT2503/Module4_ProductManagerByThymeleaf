@@ -17,7 +17,8 @@
         th, td {
             padding: 10px;
         }
-        tr:nth-child(odd){
+
+        tr:nth-child(odd) {
             background-color: #cee6ff;
         }
 
@@ -56,6 +57,7 @@
             <th>NAME</th>
             <th>CATEGORY</th>
             <th>Edit | Delete | Detail</th>
+            <th>IMAGE</th>
         </tr>
         <div th:each="product:${products}">
             <tr>
@@ -65,10 +67,22 @@
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.category}"></td>
                 <td>
-                    <a href=""><button class="btn btn-secondary"><i class="fa fa-upload"></i></button></a>
-                    <a href=""><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
-                    <a href=""><button class="btn btn-danger"><i class="fa fa-remove"></i></button></a>
+                    <a href="">
+                        <button class="btn btn-secondary"><i class="fa fa-upload"></i></button>
+                    </a>
+                    <a href="">
+                        <button class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                    </a>
+                    <a href="">
+                        <button class="btn btn-danger"><i class="fa fa-remove"></i></button>
+                    </a>
                 </td>
+                <td><img th:src="@{'/i/'+${product.image}}" alt="Product Image" style="width:100px;height:100px;"></td>
+                <td>
+                    <span th:each="color:${product.colors}" th:text="${color+', '}"></span>
+                </td>
+                <td th:text="${product.weight}"></td>
+                <td th:text="${product.size}"></td>
             </tr>
         </div>
     </table>

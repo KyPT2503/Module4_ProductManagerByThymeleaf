@@ -12,30 +12,51 @@
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
-<div class="jumbotron text-center">
+<div class="">
     <div class="container">
-        <form th:action="@{/products/create}" th:object="${product}" method="post">
+        <form th:action="@{/products/create}" th:object="${product}" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label>Quantity:
-                    <input type="number" name="quantity" class="form-control" placeholder="0">
+                    <input type="number" name="quantity" class="form-control" placeholder="0" th:value="*{quantity}">
                 </label>
             </div>
             <div class="form-group">
                 <label>Price:
-                    <input type="text" name="price" class="form-control" placeholder="0.0">
+                    <input type="text" name="price" class="form-control" placeholder="0.0" th:value="*{price}">
                 </label>
             </div>
             <div class="form-group">
                 <label>Name:
-                    <input type="text" name="name" class="form-control" placeholder="name">
+                    <input type="text" name="name" class="form-control" placeholder="name" th:value="*{name}">
                 </label>
             </div>
             <div class="form-group">
                 <label>Category:
-                    <input type="text" name="category" class="form-control" placeholder="category">
+                    <input type="text" name="category" class="form-control" placeholder="category"
+                           th:value="*{category}">
                 </label>
             </div>
+            <div class="form-group">
+                <input type="file" name="file">
+            </div>
+            <div class="form-group">
+                <label>Is new Product?
+                    <input class="form-control" type="checkbox" name="isNew" th:checked="*{isNew()}">
+                </label>
+            </div>
+            <input th:checked="${product.colors.contains(color.name)}" name="colors" class="form-control"
+                   type="checkbox" th:each="color:${colorsList}" th:value="${color.name}" th:text="${color.name}">
+            <br>
+            <div class="form-group">
+                <input type="radio" th:each="weight:${weights}" th:value="${weight}" name="weight" th:text="${weight}">
+            </div>
+            <div class="form-group">
+                <select name="size" id="size">
+                    <option th:each="size:${sizes}" th:value="${size}" th:text="${size}"></option>
+                </select>
+            </div>
             <button class="btn btn-secondary" type="submit">Save</button>
+            <input type="password">
         </form>
     </div>
 </div>

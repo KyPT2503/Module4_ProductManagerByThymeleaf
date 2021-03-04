@@ -14,4 +14,6 @@ public interface IProductService {
     boolean update(int id, Product product);
 
     List<Product> findByName(String name);
+
+    Product getById(int id);
 }
